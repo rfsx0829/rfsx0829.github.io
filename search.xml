@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>初探 Kubernetes（二）</title>
+      <link href="/2019/135.html"/>
+      <url>/2019/135.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="记录一些小问题"><a href="#记录一些小问题" class="headerlink" title="记录一些小问题"></a>记录一些小问题</h1><h2 id="VirtualBox-出现-NS-ERROR-FAILURE-0x80004005-错误"><a href="#VirtualBox-出现-NS-ERROR-FAILURE-0x80004005-错误" class="headerlink" title="VirtualBox 出现 NS_ERROR_FAILURE(0x80004005) 错误"></a>VirtualBox 出现 NS_ERROR_FAILURE(0x80004005) 错误</h2><p>这个问题我是很懵逼的，一开始不知道为什么出现的，经过许多查阅后，得到了几个解法（但是对我的问题没用，似乎这个错误的产生原因有许多）</p><ol><li>重装 VirtualBox</li><li>VirtualBox 文件夹里 改把 vbox 文件删了，重开虚拟机</li><li>卸载重装后，在 设置-隐私和安全 中允许给 VirtualBox 权限</li></ol><p>如果这几个方法解决不了你的问题，那还是自己Google吧</p><p>ps: 我的问题就很厉害了，同样是这个报错，但是百般搜索无果，可能是我动坏了底层的东西，重装系统之后问题解决</p><h2 id="Minukube-启动时-Pull-Image-失败"><a href="#Minukube-启动时-Pull-Image-失败" class="headerlink" title="Minukube 启动时 Pull Image 失败"></a>Minukube 启动时 Pull Image 失败</h2><p>这个问题。。主要还是因为 Kubernetes 是外国的嘛，国内访问的话延迟会比较高或者被 Block，所以解决方案也很简单</p><ol><li>代理</li><li>用国内可以访问的源</li></ol><h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>代理的话，就不用多解释了，一般配置好之后会监听在某个端口上，我们要做的就是让 Minikube 在 Pull Image 的时候走这个端口，直接在终端配置环境变量就行了</p><blockquote><p>export HTTP_PROXY=127.0.0.1:8080<br>export HTTPS_PROXY=127.0.0.1:8080</p></blockquote><p>或者</p><blockquote><p>HTTP_PROXY=127.0.0.1:8080 HTTPS_PROXY=127.0.0.1:8080 minikube start</p></blockquote><h3 id="能访问的源"><a href="#能访问的源" class="headerlink" title="能访问的源"></a>能访问的源</h3><p>这个就比较简单了，DockerHub，就行，虽然还是比较慢，很多 Kubernetes 的镜像在 DockerHub 都有嗷，只要Pull下来改一下 tag 就行了</p><blockquote><p>docker pull mirrorgooglecontainers/kube-apiserver:v1.14.0<br>docker tag mirrorgooglecontainers/kube-apiserver:v1.14.0 k8s.gcr.io/kube-apiserver:1.14.0</p></blockquote><h2 id="Kubernetes-使用-Docker-本地的-Image"><a href="#Kubernetes-使用-Docker-本地的-Image" class="headerlink" title="Kubernetes 使用 Docker 本地的 Image"></a>Kubernetes 使用 Docker 本地的 Image</h2><p>上一篇文章中我提到了一个，没有解释的神奇命令，这里来解释一下</p><p>先说问题和解决方案，再详细描述</p><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>问题就是 不知道本地有一个Docker，Minikube 里面还有另外一个 Docker，并不互通</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在执行 <code>docker build</code> 之前，先执行一句 <code>eval $(minikube docker-env)</code> 使 Docker client 连接到 Minikube 中的 Docker daemon 上，之后的操作就可以正常进行了</p><h3 id="问题起源"><a href="#问题起源" class="headerlink" title="问题起源"></a>问题起源</h3><p>自己写了一个简单的 HelloWorld 服务，打算用 Kubernetes 部署，看到书上讲 Kubernetes 是可以直接使用Docker 镜像的，于是将服务构建成镜像，但没有推送到 Hub 上，打算就在本地供测试使用，万万没想到，出现了一些问题</p><h3 id="具体"><a href="#具体" class="headerlink" title="具体"></a>具体</h3><p>构建镜像之后，执行 <code>docker images</code> 能看到镜像构建成功</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1554035962870-74984556-e663-4c6f-bb3e-c5a2a0fde779.png#align=left&amp;display=inline&amp;height=72&amp;name=image.png&amp;originHeight=72&amp;originWidth=1161&amp;size=13813&amp;status=done&amp;width=1161" alt="docker images"></p><p>但是在创建 Deployments 后启动 Pod 的时候出现了问题</p><blockquote><p>$ kubectl run hello-go –image=hello-go:v1.0 –port=8080<br>deployment.apps “hello-go” created<br>$ kubectl get pods</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Kubernetes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+            <tag> 小问题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>初探 Kubernetes（一）</title>
       <link href="/2019/134.html"/>
       <url>/2019/134.html</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> 新开始 </tag>
+            <tag> Kubernetes </tag>
             
-            <tag> 小问题 </tag>
+            <tag> 新开始 </tag>
             
         </tags>
       
