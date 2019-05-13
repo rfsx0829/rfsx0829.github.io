@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>当今世界计算机硬件与软件发展现状</title>
+      <link href="/2019/513.html"/>
+      <url>/2019/513.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="当今世界计算机硬件与软件发展现状"><a href="#当今世界计算机硬件与软件发展现状" class="headerlink" title="当今世界计算机硬件与软件发展现状"></a>当今世界计算机硬件与软件发展现状</h1><h2 id="简要"><a href="#简要" class="headerlink" title="简要"></a>简要</h2><p>何为计算机？</p><p>计算机是一种根据一系列指令对数据进行处理的电子设备。</p><p>而不局限于我们经常接触到的个人电脑，个人电脑只是计算机的一种。</p><h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><h3 id="回首历史"><a href="#回首历史" class="headerlink" title="回首历史"></a>回首历史</h3><h4 id="卡片机时代"><a href="#卡片机时代" class="headerlink" title="卡片机时代"></a>卡片机时代</h4><p>最初的阶段是卡片时期，即使用<strong>穿孔卡片</strong>作为指令的载体。</p><p>1801年雅卡尔发明的提花织布机，可以通过相互串联的穿孔卡片达到半自动生产，且更换卡片无需更改机械设计，是可编程化机器的里程碑。</p><h4 id="数字管时期"><a href="#数字管时期" class="headerlink" title="数字管时期"></a>数字管时期</h4><p>1930年时，四则运算已经成为了桌上型机械计算器的基本功能，但是动力全靠机械，效率极低。</p><p>第一部全电子化的桌上计算器是英国人研发的，以<strong>数字管</strong>和177个<strong>微型闸流管</strong>来显示数字。</p><h4 id="电子电路和图灵机"><a href="#电子电路和图灵机" class="headerlink" title="电子电路和图灵机"></a>电子电路和图灵机</h4><p>1930年代后期到1940年代，受到二次大战影响，此一时期被认为是计算机发展史中的混乱时期，战争开启了现代电脑的时代，电子电路，继电器，电容及真空管相继登场，取代机械器件，数字计算器开始得到广泛发展，使用包含继电器或真空管的电路，以打孔纸带作为输入和主要（非短期）储存媒介。</p><p>1936年，图灵发表的研究报告对计算机和计算机科学领域造成巨大冲击，这篇报告主要是为了证明循环处理程式的死角，亦即停机问题的存在。图灵也以算法概念为通用计算机（纯理论器件）作出定义，即图灵机。</p><p>1937年，美国数学家兼工程师 克劳德·香农 在麻省理工学院发表他的硕士论文，是史上首度将布尔代数应用在电子继电器和电闸上的人。论文题为《中继和交换电路的符号分析》（A Symbolic Analysis of Relay and Switching Circuits），是数字电路设计的实践基础。<br>同年，在贝尔实验室工作的乔治组装出了一部以继电器表示二进位制的电脑模型机。</p><h4 id="冯·诺伊曼结构"><a href="#冯·诺伊曼结构" class="headerlink" title="冯·诺伊曼结构"></a>冯·诺伊曼结构</h4><p>冯·诺伊曼写过一篇广为流传的文章《EDVAC独家报告》（First Draft of a Report on the EDVAC），内容描述EDVAC将程式和计算中的资料，设计储存在同一内存内。冯·诺伊曼的这项设计后来被称为<strong>冯·诺伊曼架构</strong>，成为发展第一部真正具有运作弹性、一般用途数字电脑的设计基础。</p><h4 id="集成芯片时期"><a href="#集成芯片时期" class="headerlink" title="集成芯片时期"></a>集成芯片时期</h4><h3 id="发展现状"><a href="#发展现状" class="headerlink" title="发展现状"></a>发展现状</h3><p>当前 电子计算机</p><h3 id="展望未来"><a href="#展望未来" class="headerlink" title="展望未来"></a>展望未来</h3><p>未来 不清楚怎么发展</p><h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><h3 id="回首历史-1"><a href="#回首历史-1" class="headerlink" title="回首历史"></a>回首历史</h3><p>低级发展</p><h3 id="发展现状-1"><a href="#发展现状-1" class="headerlink" title="发展现状"></a>发展现状</h3><p>云时代</p><h3 id="展望未来-1"><a href="#展望未来-1" class="headerlink" title="展望未来"></a>展望未来</h3><p>未来，遥不可期</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Computer </tag>
+            
+            <tag> Science </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Gopher China 2019 总结</title>
       <link href="/2019/4301.html"/>
       <url>/2019/4301.html</url>
