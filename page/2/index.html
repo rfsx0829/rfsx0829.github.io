@@ -13,141 +13,15 @@
 <p>也可以有一个可以放心折腾的地方，需要稳定部署的服务放到线上服务，不需要长期稳定的服务，就可以放进虚拟机乱来啦。也有个最真实的环境</p>
 <h2 id="VirtualBox"><a href="#VirtualBox" class="headerlink" title="VirtualBox"></a>VirtualBox</h2><p>最首先当然是要安装一个虚拟沙盒啦，笔者推荐使用 VirtualBox ，操作简单，新手友好</p>
 <p>可以去 <a href="https://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html" target="_blank" rel="noopener">VirtualBox官网下载页面</a> 下载，或者在 <a href="https://mirrors.tuna.tsinghua.edu.cn/virtualbox/" target="_blank" rel="noopener">清华大学开源软件镜像站</a> 下载</p>
-<p>下载完成后傻瓜式安装</p>
-<h2 id="Ubuntu-镜像"><a href="#Ubuntu-镜像" class="headerlink" title="Ubuntu 镜像"></a>Ubuntu 镜像</h2><p>其实这里有很多选择，Ubuntu，Centos，FreeBSD 等等，因为笔者在阿里租借的服务器是 Ubuntu ，所以笔者选择Ubuntu 以获得更相似的环境（但我选择了最新的 1904 版），更多发行版可在 <a href="https://mirrors.tuna.tsinghua.edu.cn" target="_blank" rel="noopener">清华大学开源软件镜像站</a> 获取</p>
-<p>笔者选择这一个</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556115838462-a771b2b3-72de-470f-9d3d-1f2f5de66b55.png" alt="ubuntu"></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116176308-22a252fe-c963-4f64-a5fe-06ef8e1998db.png" alt="新建"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116224484-b2db2830-bba8-4e37-b20e-b584d9220eb4.png" alt="命名"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116239710-fba45b5e-5548-4f08-9bea-ce0b9f141655.png" alt="内存"></p>
-<p>配置内存大小，默认 1G 一般情况足够使用，笔者选择加到 2G，这里往后一直点下一步就完事儿了</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116311481-171b5860-2ab8-4c37-8751-5ec7157c0fbc.png" alt="硬盘"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116401476-133b274f-abc4-4435-8db7-1174dcb9d762.png" alt="创建硬盘"></p>
-<p>虚拟硬盘大小，默认是动态扩充，就是说即使你只分配了10G，如果占用超过10G，它就会自己去多占用空间来扩充，而不是告诉你空间不足，但是为了保险，还是选择20G（之前听说有学弟出现过空间不足的情况，反正我没遇到过）</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116542022-6b19abfc-c377-4e7f-88e7-ec6d4955290f.png" alt="点击启动"></p>
-<p>虚拟机创建完成，点击启动来启动虚拟机</p>
-<h3 id="启动虚拟机"><a href="#启动虚拟机" class="headerlink" title="启动虚拟机"></a>启动虚拟机</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116583335-fb9d7315-2cb0-49ea-932d-50997f7872b1.png" alt="选择启动盘"></p>
-<p>在启动的时候，会弹出这个小窗口，让选择启动盘，这里就选择之前下载的 Ubuntu 镜像啦</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116690689-05b3e3ff-836f-4143-b993-30843f9ce4bb.png" alt="等待安装"></p>
-<p>如果启动到这里，基本是启动虚拟机了，等待几分钟，即将开始配置 Ubuntu 安装器</p>
-<h3 id="配置-Ubuntu-安装器"><a href="#配置-Ubuntu-安装器" class="headerlink" title="配置 Ubuntu 安装器"></a>配置 Ubuntu 安装器</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116762437-7e6dad5d-8a25-406c-bcb5-52fd803fb3de.png" alt="选择语言"></p>
-<p>当你看到这个界面，OK，从这里开始配置，第 0 步，选择语言，当然 English 啦，敲回车就完事了</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116862722-53796a08-9846-4329-a77b-d182a693677c.png" alt></p>
-<p>提示有更新，这里为了方便，选择不更新直接安装</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116936200-67d8f961-6ace-4dad-8471-16f48c979a27.png" alt></p>
-<p>选择键盘布局，不用说， English ！</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556116970635-cdf85fa4-d917-46f5-a27d-28661ee922b6.png" alt></p>
-<p>选择操作，当然是 安装Ubuntu 啦</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117036534-66e0eed3-ce57-42ae-b4db-4fe411c1b186.png" alt></p>
-<p>这里是配置网络连接，默认是用 Nat 地址映射，不用改，直接下一步（安装好之后可以设置虚拟机网络为 桥接）</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117144508-a10b2859-7ab2-474b-bdaf-e1c773e58b62.png" alt></p>
-<p>代理设置，不需要使用代理，直接下一步（有需要的话 按上方向键 可移动光标到文本框，输入代理地址）</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117218960-72806d81-ecab-4339-9c75-a758f4a40ecc.png" alt></p>
-<p>镜像源配置，这个就需要修改了，笔者推荐使用 清华源: <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/ubuntu</a></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117310011-27e6c4b6-392b-4063-a4d0-f5c02c522945.png" alt></p>
-<p>因为硬盘是之前分配的20G空间，分区也不用我们操心，直接使用整个硬盘</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117374674-abf92ece-d796-453e-8be8-b3dc1afe7b50.png" alt></p>
-<p>只有这一个硬盘，下一步</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117395143-a9a57cf3-974c-45f2-936c-45250479aa45.png" alt></p>
-<p>确认信息无误，Done！</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117424696-a6c156a3-25ae-45ca-ae7b-5210a0ae9fc7.png" alt></p>
-<p>提示操作不可逆，是否确定，选择继续</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117460670-6a7a5126-04b4-4a02-b38b-f171a84ef2f4.png" alt></p>
-<p>服务器命名和创建用户，自己解决就好，可以看到下面的进度，系统已经在安装过程中了，一边配置一边安装</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117551242-3027feca-99f6-4387-b1da-f739eaf4db7b.png" alt></p>
-<p>是否安装 OpenSSH ，当然啦，不然怎么给 Win 提供算力，怎么供其他设备远程访问呢，勾选好之后 Done！</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117640864-25b2d3b0-48a9-4d1c-a897-7aba4a4276c0.png" alt></p>
-<p>推荐安装的一些软件，可以自己选择要不要安装，这里笔者推荐安装 docker 和 etcd，但是为了省时，现在先不安装，装好之后自己手动安装，读者选择要安装的软件之后 Done</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556117763494-1f3ccf90-7ef0-412a-97ad-ff9eff2bbc98.png" alt></p>
-<p>安装完成啦，选择 Reboot 重启机器</p>
-<h3 id="安装完成"><a href="#安装完成" class="headerlink" title="安装完成"></a>安装完成</h3><p>启动机器后，输入用户名密码登录（输入密码的时候没有回显嗷，不要以为没有输入进去，只是没有回显），一切正常，安装成功！</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556118537423-028e872b-4811-412b-8ed1-ed8ee4d515f6.png" alt></p>
-<p>可以看到，登录成功后给出了机器的 IP 地址，如果没有给出的话可以尝试 <code>ifconfig | grep 192.168</code> 命令</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556118682823-125f32e4-73d4-4bf2-85ac-74a90f09adb6.png" alt></p>
-<p>同样可以知道机器的 IP 地址</p>
-<h2 id="在-Mac-上测试连通性"><a href="#在-Mac-上测试连通性" class="headerlink" title="在 Mac 上测试连通性"></a>在 Mac 上测试连通性</h2><p>既然知道机器的 IP 地址，在 Win 上先测试一下 SSH 能不能连接上</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556118812918-a847d6b0-855d-4f3d-9f5a-b66db47611c7.png" alt></p>
-<p>成功连接到虚拟机的 Shell</p>
-<p>ps: 注意在输入密码的时候是没有回显的，不要误以为没输入进去</p>
-<p>在 Win 上的操作就到这里结束，可以切回 Mac ，目测没有问题</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1556119097637-e2c98440-4d2a-43dd-8e48-9e72be349a92.png" alt></p>
-<p>一切正常，那么接下来就可以开始开发环境的配置了，安装 Docker, Kubernetes, Istio 等一系列工具</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/4211.html">读书句子收集</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/收集/">收集</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/收集/">收集</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Reading/">Reading</a></span><div class="content"><h1 id="觉得好的句子，就收集在这里吧"><a href="#觉得好的句子，就收集在这里吧" class="headerlink" title="觉得好的句子，就收集在这里吧"></a>觉得好的句子，就收集在这里吧</h1><p>虽然自己在每天的日记里也会记录一些句子，这里就不把那些搬运过来，日记里记录短句，这里记录长句吧</p>
-<h2 id="周总结一"><a href="#周总结一" class="headerlink" title="周总结一"></a>周总结一</h2><h3 id="《共产党宣言》"><a href="#《共产党宣言》" class="headerlink" title="《共产党宣言》"></a>《共产党宣言》</h3><blockquote>
-<ol>
-<li>现代的工人只有当他们找到工作的时候才能生存，而且只有当他们的劳动增值资本的时候才能找到工作</li>
-<li>由于推广机器和分工，无产者的劳动已经失去了任何独立的性质，因而对工人也失去了任何吸引力。工人变成了机器的单纯的附属品，要求他做的只是极其简单，极其单调和极容易学会的操作。因此，花在工人身上的费用，几乎只限于维持工人生活和延续工人后代所必需的生活资料。但是，商品的价格，从而劳动的价格，是同它的生产费用相等的。因此，劳动越使人感到厌恶，工资也就越减少。</li>
-<li>现代工业已经把家长式的师傅的小作坊变成了工业资本家的大工厂。挤在工厂里的工人群众就像士兵一样被组织起来。他们是产业军的普通士兵，受着各级军士和军官的层层监视。他们不仅仅是资产阶级的，资产阶级国家的奴隶，他们每日每时都受机器，受监工，首先是受各个经营工厂的资产者本人的奴隶。这种专制制度越是公开地把营利宣布为自己的最终目的，它就越是可鄙，可恨和可恶。</li>
-<li>手的操作所要求的技巧和气力越少，换句话说，现代工业越发达，男工也就越受到女工和童工的排挤。对工人阶级来说，性别和年龄的差别再没有什么社会意义了。他们都只是劳动工具，不过因为年龄和性别的不同而需要不同的费用罢了。</li>
-</ol>
-</blockquote>
-<h3 id="《毛泽东选集》卷一"><a href="#《毛泽东选集》卷一" class="headerlink" title="《毛泽东选集》卷一"></a>《毛泽东选集》卷一</h3><blockquote>
-<ol>
-<li>他们觉得现在如果只使用和从前相等的劳动，就会不能维持生活。必须增加劳动时间，每天起早散晚，对于职业加倍注意，方能维持生活。</li>
-<li>这派议论貌似有理，其实也是错的。第一，上述那些事，都是土豪劣绅，不法地主自己逼出来的。土豪劣绅，不法地主，历来凭借实力称霸，践踏农民，农民才有这种很大的反抗。凡是反抗最力，乱子闹得最大的地方，都是土豪劣绅，不法地主为恶最甚的地方。农民的眼睛，全然没有错的。谁个劣，谁个不劣，谁个最甚，谁个稍次，谁个惩办要严，谁个处罚从轻，农民都有极明白的计算，罚不当罪的极少。第二，革命不是请客吃饭，不是做文章，不是绘画绣花，不能那样雅致，那样从容不迫，文质彬彬，那样温良恭俭让。革命是暴动，是一个阶级推翻一个阶级的暴烈的行动。</li>
-<li>矫枉必须过正，不过正不能矫枉。</li>
-<li>以前土豪劣绅的残忍，土豪劣绅造成的农村白色恐怖是这样，现在农民起来枪毙几个土豪劣绅，造成一点小小的镇压反革命派的恐怖现象，有什么理由说不应该？</li>
-<li>封建时代独裁专断的恶习惯深中于群众乃至党员的头脑中，一时扫除不净，遇事贪图便利，不喜欢麻烦的民主制度。</li>
-<li>本位主义，一切只知道为四军打算，不知道武装地方群众是红军的重要任务之一。这是一种放大了的小团体主义。</li>
-<li>有少数同志囿于四军的局部环境，以为除此就没有别的革命势力了。因此，保存实力，避免斗争的思想非常浓厚。这是机会主义的残余。</li>
-<li>不顾主客观条件，犯着革命的急性病，不愿意艰苦地做细小严密的群众工作，只想大干，充满着幻想。这是盲动主义的残余。</li>
-</ol>
-</blockquote>
-<h3 id="《在路上》"><a href="#《在路上》" class="headerlink" title="《在路上》"></a>《在路上》</h3><p>本来这本里也是有很多好句子的，但几乎都是短句，就不记录了</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/4210.html">每周总结(一)</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/每周总结/">每周总结</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/小结/">小结</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/weekly/">weekly</a></span><div class="content"><h1 id="周记一"><a href="#周记一" class="headerlink" title="周记一"></a>周记一</h1><h2 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h2><p>这是第一次写每周总结，没有什么经验，那就想到什么写什么</p>
-<h2 id="做事"><a href="#做事" class="headerlink" title="做事"></a>做事</h2><ol>
-<li>上课满勤，一节都没逃过，但是偶尔课上打盹</li>
-<li>每天坚持锻炼，5 公里 + 30 * 3 俯卧撑 + 30 * 3 仰卧起坐</li>
-<li>买了很多书籍并开始阅读，包括《毛选》共五卷，《共产党宣言》，《密码学》，架构方面两本，预计一到两个月读完</li>
-<li>理发，寸头，非常清爽</li>
-</ol>
-<h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>我在考虑这个部分，应该怎么来作记录呢</p>
-<p>按照上面做事的分店讲，还是分类别讲</p>
-<p>还是分类别吧，觉得受上一节点约束很奇怪</p>
-<h3 id="读书记录的句子"><a href="#读书记录的句子" class="headerlink" title="读书记录的句子"></a>读书记录的句子</h3><p>如果直接写在这里的话，恐怕内容太多导致头重脚轻了，就单独放在另一篇博客里吧，这里放个链接</p>
-<p><a href="http://rfsx.bugzeng.com/2019/4211.html">读书句子收集</a></p>
-<h3 id="自己的代码"><a href="#自己的代码" class="headerlink" title="自己的代码"></a>自己的代码</h3><p>本周新起了一个项目，是关于 RSS 的，可见于 <a href="http://rfsx.bugzeng.com/2019/418.html">RSS</a></p>
-<p>因为项目刚起步，也没什么好记录的，具体进度可见于我在 GitHub 上的 <a href="https://github.com/rfsx0829/rss" target="_blank" rel="noopener">Repo</a></p>
-<h3 id="强大的工具收集"><a href="#强大的工具收集" class="headerlink" title="强大的工具收集"></a>强大的工具收集</h3><p><a href="https://github.com/uber-go/dig" target="_blank" rel="noopener">dig</a></p>
-<p>这是Go语言的一个依赖注入工具，基于反射实现的</p>
-<p>设计得非常巧妙，我正在进行这个工具的源码阅读，预计不久后会专门写一篇博客来分析一下它的源码和基本原理，并写一些示例</p>
-<p>ps: 其实原理我都知道一点了，拓扑排序嘛</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>因为刚开始做博客，很多东西都不熟悉，在内容输出上也很无力，更新会很慢</p>
-<p>总之 多读书，多坚持 就完事儿了</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/418.html">关于 RSS</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Projects/">Projects</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/RSS/">RSS</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/APP/">APP</a></span><div class="content"><h1 id="关于-RSS"><a href="#关于-RSS" class="headerlink" title="关于 RSS"></a>关于 RSS</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>刚才突然想了很多事情，突然想到之前在日记中有提到，每周要写总结，并且放到博客上。</p>
+<p>下载完成后傻瓜式安装</p></div><a class="more" href="/2019/424.html#more">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/4211.html">读书句子收集</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/收集/">收集</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/收集/">收集</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Reading/">Reading</a></span><div class="content"><h1 id="觉得好的句子，就收集在这里吧"><a href="#觉得好的句子，就收集在这里吧" class="headerlink" title="觉得好的句子，就收集在这里吧"></a>觉得好的句子，就收集在这里吧</h1><p>虽然自己在每天的日记里也会记录一些句子，这里就不把那些搬运过来，日记里记录短句，这里记录长句吧</p></div><a class="more" href="/2019/4211.html#more">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/4210.html">每周总结(一)</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/每周总结/">每周总结</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/小结/">小结</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/weekly/">weekly</a></span><div class="content"><h1 id="周记一"><a href="#周记一" class="headerlink" title="周记一"></a>周记一</h1><h2 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h2><p>这是第一次写每周总结，没有什么经验，那就想到什么写什么</p>
+<h2 id="做事"><a href="#做事" class="headerlink" title="做事"></a>做事</h2></div><a class="more" href="/2019/4210.html#more">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/418.html">关于 RSS</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Projects/">Projects</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/RSS/">RSS</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/APP/">APP</a></span><div class="content"><h1 id="关于-RSS"><a href="#关于-RSS" class="headerlink" title="关于 RSS"></a>关于 RSS</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>刚才突然想了很多事情，突然想到之前在日记中有提到，每周要写总结，并且放到博客上。</p>
 <p>所以，这周的总结，肯定是有的，但因为刚开始，内容可能会非常贫乏，还在摸索道路</p>
 <p>又想到之前我BOSS一年前提到的，关于rss的东西，那时候我刚入门，他让我做一个这方面的应用，但当时的我水平还不足以做到，现在来试试</p>
 <p>所以，这篇文章来讲讲关于RSS的东西，并且我自己又建了一个代码库，尽量完成这个项目</p>
-<h2 id="RSS"><a href="#RSS" class="headerlink" title="RSS"></a>RSS</h2><p>RSS 即 Really Simple Syndication 简易信息聚合，其实就是一个 信息源</p>
-<p>那么这个项目具体要做什么呢，做一个 RSS 阅读器，虽然已经有很多现成的阅读器了，但我还是要做，因为。。。算是弥补一下以前没能做成这个项目的遗憾吧</p>
-<p>可能还是有读者不理解什么叫做rss，没事，等这篇文章有除我之外的其他读者的时候，可能我这个项目早就做好最初版本了哈，到时候你们自己下载来玩玩就知道了</p>
-<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p>这里是项目的链接 <a href="https://github.com/rfsx0829/rss" target="_blank" rel="noopener">rss reader</a></p>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>因为这篇文章只是讲一下我要做一个这个项目，实际还没有动工，那么在这里就可以展望一下这个项目需要有什么功能</p>
-<h3 id="功能展望"><a href="#功能展望" class="headerlink" title="功能展望"></a>功能展望</h3><ol>
-<li>阅读聚合消息</li>
-<li>添加，删除源</li>
-<li>优质源推荐</li>
-</ol>
-<p>暂定这三个基础功能吧，高级功能后期再添加</p>
-<h3 id="项目形式"><a href="#项目形式" class="headerlink" title="项目形式"></a>项目形式</h3><p>暂定 Golang 后台 + Flutter APP ，等这两个都完工可以考虑再做一个 Web 前端</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/414.html">RESTful 架构</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Architecture/">Architecture</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/架构/">架构</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Architecture/">Architecture</a></span><div class="content"><h1 id="RESTful-架构"><a href="#RESTful-架构" class="headerlink" title="RESTful 架构"></a>RESTful 架构</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>所谓 REST，即是 Resources Representational State Transfer 的缩写，即 资源表现层状态转化</p>
+<h2 id="RSS"><a href="#RSS" class="headerlink" title="RSS"></a>RSS</h2><p>RSS 即 Really Simple Syndication 简易信息聚合，其实就是一个 信息源</p></div><a class="more" href="/2019/418.html#more">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/414.html">RESTful 架构</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Architecture/">Architecture</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/架构/">架构</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Architecture/">Architecture</a></span><div class="content"><h1 id="RESTful-架构"><a href="#RESTful-架构" class="headerlink" title="RESTful 架构"></a>RESTful 架构</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>所谓 REST，即是 Resources Representational State Transfer 的缩写，即 资源表现层状态转化</p>
 <p>具体怎么理解，我看了 阮一峰 大神的博客，<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="noopener">点击这里查看文章</a>，我觉得解释得很清楚</p>
 <p>那为什么还要写这篇博客呢，我是想记录一下自己的感受和见解</p>
-<h2 id="最初的理解"><a href="#最初的理解" class="headerlink" title="最初的理解"></a>最初的理解</h2><p>最早看到 RESTful 这个词，还是在以前学 Nodejs 的时候，看 Eggjs 框架，文档中有提到这个概念，但是当时一点都不懂，也没有查资料，以自己粗浅的知识瞎猜了一个意思</p>
-<p>我当时以为 Router 以 URL.Path 调度 Controller 的过程中，每一级的 Controller 和 Path 的名字要一一对应，这个叫做 RESTful 架构，但是现在想想觉得好蠢啊。。</p>
-<h2 id="真正的-RESTful-架构"><a href="#真正的-RESTful-架构" class="headerlink" title="真正的 RESTful 架构"></a>真正的 RESTful 架构</h2><p>阮老师 的博客中已经解释得很清楚了，我再小结一下，也免得自己忘记掉</p>
-<ol>
-<li>资源本身无类型，表现层是什么样取决于需求，就像是 C 语言的内存数据一样，数据本身不会变，表现为什么类型只取决于需求什么类型，所以要注意 Header 中的 Content-Type 哦</li>
-<li>URL.Path 中不能出现动词，应该是分级的名词，版本号也不应出现，要进行的操作应以 Http.Method 来区分</li>
-<li>增删查改 分别对应 POST DELETE GET POST</li>
-</ol>
-<p>当有这些总结之后，再回头看看之前写的那些东西，真的是没眼看</p>
-<blockquote>
-<p>/api/v1/article/add</p>
-</blockquote>
-<p>真是不知道之前怎么能写成这样，这是一次性犯了多少错啊。。。</p>
-<p>所以看了看 RESTful 对自己的提升还是很多的，又要开始重构很多代码了</p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(/img/top.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By Guu Zeng</div><div class="footer_custom_text">Hi, welcome to my blog !</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+<h2 id="最初的理解"><a href="#最初的理解" class="headerlink" title="最初的理解"></a>最初的理解</h2></div><a class="more" href="/2019/414.html#more">阅读更多</a><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(/img/top.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By Guu Zeng</div><div class="footer_custom_text">Hi, welcome to my blog !</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
 }</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>

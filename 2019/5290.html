@@ -11,6 +11,7 @@
 <p>在 Debug 模式下表现一切正常，但是当我编译为发布版时，网络访问不能正常工作，错误为 Dio Error: OS Error: Permission Denied.</p>
 <p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1559131545845-7b932922-efca-4015-b767-deceac464433.png" alt="Screenshot"></p>
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>读报错很容易知道，是权限问题，系统不允许进行网络访问</p>
+<a id="more"></a>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>既然是系统不给权限，那就让系统给权限就好了</p>
 <p>在 {project}/android/app/src/main/AndroidMainfest.xml 文件，在application标签前面加一行</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
