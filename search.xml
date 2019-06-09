@@ -4,26 +4,25 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2019/undefined.html"/>
-      <url>/2019/undefined.html</url>
+      <title>CSRF学习</title>
+      <link href="/2019/6091.html"/>
+      <url>/2019/6091.html</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/2019/undefined.html"/>
-      <url>/2019/undefined.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="CSRF学习"><a href="#CSRF学习" class="headerlink" title="CSRF学习"></a>CSRF学习</h1><p>感觉CSRF还是要用到XSS相关的东西</p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>前面的准备工作，应该说看过前面关于XSS的都应该很清楚了，无非就是克隆仓库然后把项目运行起来，没有什么值得写的，可以去参照前面那篇文章</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">Listening at http://localhost:4000</span><br></pre></td></tr></table></figure><h2 id="局域网测试"><a href="#局域网测试" class="headerlink" title="局域网测试"></a>局域网测试</h2><p>先组成局域网啦，这个不用废话了，当前笔者在局域网中的 IP 是 172.16.151.170</p><h3 id="设置名字-Cookie"><a href="#设置名字-Cookie" class="headerlink" title="设置名字(Cookie)"></a>设置名字(Cookie)</h3><p>电脑和手机 分别设置不同的 名字（其实是 Cookie 啦，用来演示 CSRF 的作用）</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560058495442-b0eb6581-76ba-4a1b-9cdb-74a6ba8eab0e.png" alt="PCName"></p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560058524715-91a47acf-f49f-4163-a534-f9c5b2aa2cc2.png" alt="PCName"></p><p>移动端</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560058800665-5ba7dd77-f3b5-4d40-8a80-1a74b1727994.png" alt="PhoneName"><br><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560058810161-04173216-542b-496b-90b2-20b8128acaf5.png" alt="PhoneName"></p><p>两边都设置好了名字，电脑端是 PCName 手机端是 PhoneName</p><h3 id="查看-Store"><a href="#查看-Store" class="headerlink" title="查看 Store"></a>查看 Store</h3><p>查看一下服务端储存的数据，有两个</p><ul><li>一个是公开的 pub ，谁都可以编辑，并且没有不会留下修改人的信息</li><li>另一个是 pro ，必须设置过名字的客户端才能编辑，且会记录是谁编辑了此字段</li></ul><p>未编辑过的情况，什么都还没有</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560058971970-eaf698d5-6662-43b4-8f8a-2c487d30502e.png" alt="store"></p><p>尝试用电脑端编辑一下 pub 和 pro</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560059040560-ee7b04f1-d11e-4e74-95b3-398d40d503e0.png" alt="onPC"></p><p>编辑好了之后用手机端看一下，应该查看到也是 PCName 修改了 pro 字段</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560059143496-4e885b6f-0698-420d-a1f0-4f9cb4d7afe6.png" alt="onMobile"></p><h3 id="进行CSRF攻击"><a href="#进行CSRF攻击" class="headerlink" title="进行CSRF攻击"></a>进行CSRF攻击</h3><p>其实就是将一个做事情的链接，放在大家都能看到地方，在这个情形下，当然是 pub 最适合啦，然后诱导其他用户点击</p><p>这里在电脑端修改 pub 为一个做坏事的链接，并诱导手机端点击，将pub改为 <code>&lt;a href=&quot;http://172.16.151.170:4000/store?pro=SomeSecretInfo&quot;&gt;Click Here !&lt;/a&gt;</code></p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560059537983-09f80737-2a6d-46ea-b42e-76b8d6971c22.png" alt="csrf"></p><p>修改好了，这个链接点击之后就会用当前用户去修改 pro 的值，用手机端测试一下</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560059660422-0b996edb-bc95-4238-9606-83350deb8601.png" alt="csrf"></p><p>确实有钓鱼链接了，那么点击一下试试</p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560059682851-53bdbbb1-98e9-41b1-8456-d3c6273ce169.png" alt="csrf"></p><p>可以看到，手机端的私人信息被盗取。CSRF攻击成功</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>伪造一个链接，诱骗你访问，于是盗取了你的相关信息，就这么回事</p>]]></content>
       
       
+      <categories>
+          
+          <category> information-security </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CSRF </tag>
+            
+        </tags>
       
     </entry>
     
@@ -71,9 +70,9 @@
       
         <tags>
             
-            <tag> 小问题 </tag>
-            
             <tag> Dio </tag>
+            
+            <tag> 小问题 </tag>
             
         </tags>
       
@@ -364,11 +363,11 @@
       
         <tags>
             
+            <tag> 小问题 </tag>
+            
             <tag> Flutter </tag>
             
             <tag> Android </tag>
-            
-            <tag> 小问题 </tag>
             
         </tags>
       
