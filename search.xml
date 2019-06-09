@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>SQLinjection学习</title>
+      <link href="/2019/6091.html"/>
+      <url>/2019/6091.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="SQLinjection学习"><a href="#SQLinjection学习" class="headerlink" title="SQLinjection学习"></a>SQLinjection学习</h1><p>所谓 SQL injection ， 即 SQL注入</p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>参见 README.md</p><p>其实 README 已经写了用法了，我也不再在这里瞎扯，这里就直接开注入吧，介绍一下各种神奇的注入</p><h2 id="正常情况"><a href="#正常情况" class="headerlink" title="正常情况"></a>正常情况</h2><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560068392820-462156eb-1d91-40a7-a3a9-2443e7578f52.png" alt="uid=3"></p><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560068444157-376cb2e8-d0e3-4915-bae0-d3a757727b93.png" alt="name=Tom"></p><h2 id="Injection"><a href="#Injection" class="headerlink" title="Injection"></a>Injection</h2><p>用于测试的数据表只有三个字段</p><ul><li>uid 正整数，拼接 SQL 时没有引号</li><li>name 字符串，用单引号拼接 SQL</li><li>pass 字符串，同 name</li></ul><h3 id="uid-’’-’’"><a href="#uid-’’-’’" class="headerlink" title="uid=’’=’’"></a>uid=’’=’’</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560068492320-6d6d1050-4bfc-47d0-a064-c2840254ebf4.png" alt="uid=&#39;&#39;=&#39;&#39;"></p><h3 id="name-’-‘"><a href="#name-’-‘" class="headerlink" title="name=’-‘"></a>name=’-‘</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560068524986-b7d2be0e-b1c2-48ee-a332-84036435637a.png" alt="name=&#39;-&#39;"></p><h3 id="name-’-’"><a href="#name-’-’" class="headerlink" title="name=’=’"></a>name=’=’</h3><p><img src="https://cdn.nlark.com/yuque/0/2019/png/162233/1560068556759-ebe917aa-80b3-46ea-bb20-d015efe991d4.png" alt="name=&#39;=&#39;"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> information-security </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SQLi </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CSRF学习</title>
       <link href="/2019/6091.html"/>
       <url>/2019/6091.html</url>
@@ -70,9 +97,9 @@
       
         <tags>
             
-            <tag> Dio </tag>
-            
             <tag> 小问题 </tag>
+            
+            <tag> Dio </tag>
             
         </tags>
       
@@ -363,11 +390,11 @@
       
         <tags>
             
-            <tag> 小问题 </tag>
-            
             <tag> Flutter </tag>
             
             <tag> Android </tag>
+            
+            <tag> 小问题 </tag>
             
         </tags>
       
