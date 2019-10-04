@@ -13,14 +13,14 @@
       
       <categories>
           
-          <category> tools </category>
+          <category> Tools </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tools </tag>
+            <tag> Tools </tag>
             
         </tags>
       
@@ -65,14 +65,14 @@
       
       <categories>
           
-          <category> 收集 </category>
+          <category> Collections </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 收集 </tag>
+            <tag> Collections </tag>
             
         </tags>
       
@@ -90,7 +90,7 @@
       
       <categories>
           
-          <category> 论文 </category>
+          <category> Papers </category>
           
       </categories>
       
@@ -144,16 +144,16 @@
       
       <categories>
           
-          <category> 收集 </category>
+          <category> Collections </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 收集 </tag>
-            
             <tag> Reading </tag>
+            
+            <tag> Collections </tag>
             
         </tags>
       
@@ -171,7 +171,7 @@
       
       <categories>
           
-          <category> 读书笔记 </category>
+          <category> Collections </category>
           
       </categories>
       
@@ -281,14 +281,12 @@
       
       <categories>
           
-          <category> 杂言 </category>
+          <category> Others </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> 新开始 </tag>
             
             <tag> Blog </tag>
             
@@ -364,7 +362,7 @@
       
       <categories>
           
-          <category> Collection </category>
+          <category> Collections </category>
           
       </categories>
       
@@ -476,7 +474,7 @@
       
       <categories>
           
-          <category> 教程 </category>
+          <category> Tutorial </category>
           
       </categories>
       
