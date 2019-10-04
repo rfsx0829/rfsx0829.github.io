@@ -19,12 +19,11 @@
     <link rel="dns-prefetch" href="http://blog.bugzeng.com">
     <!--SEO-->
 
-<meta name="keywords" content="Tools">
+<meta name="keywords" content="杂谈">
 
 
-<meta name="description" content="一个图片迁移工具很久没写博客。可能是忘记了吧。
-听到朋友问，为啥博客很多图片都看不到了，于是打开看看，确实出现了一些问题，原来用的简书的图床出了些问题，偶尔可以用偶尔又出问题，让人很是头疼。
-于...">
+<meta name="description" content="有两个月没有写过博客啦，因为总是觉得没有什么值得写的，又或者是，怕大家看见之后嘲笑自己
+而且这两个月也确实挺忙的，之前的重心一直放在开发上，现在又打算花些心思玩玩信息安全了，我这个人就是这样呀，...">
 
 
 <meta name="robots" content="all">
@@ -35,7 +34,7 @@
 
 <title>
     
-    一个图片迁移工具 |
+    在下又回来啦 |
     
     Guu&#39;s Blog
 </title>
@@ -141,16 +140,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="一个图片迁移工具">
+        <h1 id="在下又回来啦">
             
-            一个图片迁移工具
+            在下又回来啦
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/Tools/">Tools</a>
+        <a class="category-link" href="/categories/Others/">Others</a>
     </span>
     
     
@@ -158,7 +157,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-link" href="/tags/Tools/">Tools</a>
+            <a class="tag-link" href="/tags/杂谈/">杂谈</a>
             
         </span>
     </span>
@@ -168,7 +167,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2019/07/20</span>
+            2019/10/05</span>
     </span>
     
     <span class="fa-wrap">
@@ -183,21 +182,11 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="一个图片迁移工具"><a href="#一个图片迁移工具" class="headerlink" title="一个图片迁移工具"></a>一个图片迁移工具</h1><p>很久没写博客。可能是忘记了吧。</p>
-<p>听到朋友问，为啥博客很多图片都看不到了，于是打开看看，确实出现了一些问题，原来用的简书的图床出了些问题，偶尔可以用偶尔又出问题，让人很是头疼。</p>
-<p>于是我自己写了个图片迁移工具，把博客的 md 文件里，原来简书图床的图片批量下载，然后上传到自己的图床上或者是其他比较优秀的图床，比如语雀或者 GitHub 之类的，但是看了看语雀的 API 文档，目前的文件上传接口还没有完全开放，还需要自己去申请，考虑到 GitHub 或许在国内条件又不是很好，于是就决定上传到自己服务器上</p>
-<p>正好也很久没写博客，现在做出了工具，正好可以写个博客来记录一下。</p>
-<p>但其实很多详细的东西直接可以去看代码和 README 就可以了，在博客里我最多也就瞎扯扯。</p>
-<p>工具具体呢，可以处理单 md 文件，也可以处理一个文件夹里所有的 .md 文件。</p>
-<p>具体做的事情是</p>
-<ol>
-<li>找出所有的图片链接，用的是正则表达式，目前只检测 png 和 jpg 两类图片</li>
-<li>从所有的链接中找出要替换的图床里的图片链接，因为不是所有的图片都是需要替换的，只有坏图床里的图片需要替换到好图床里，于是需要自己指定 专门挑出 哪个图床的链接。如果上传失败会将图片写入到本地。</li>
-<li>挑出链接后，遍历，下载并重新上传，获得新的图片地址，暂时存在内存中</li>
-<li>一个文件中所有符合条件的图片都下载并上传完成后，进行链接的文本替换</li>
-<li>替换链接完成后，写入到 xxx_new.md 文件，原文件不影响</li>
-</ol>
-<p>基础功能很简单，但确实简化了我不少的工作。</p>
+        <p>有两个月没有写过博客啦，因为总是觉得没有什么值得写的，又或者是，怕大家看见之后嘲笑自己</p>
+<p>而且这两个月也确实挺忙的，之前的重心一直放在开发上，现在又打算花些心思玩玩信息安全了，我这个人就是这样呀，不知道这次又能坚持多久呢</p>
+<p>又开始写博客是因为，又想了很多事情，接触 CTF 之后看到了很多师傅的博客，大家都做得十分出彩，在博客上记录着各自的技术和生活，甚至还有师傅在博客上写起了日记。我才明白，其实写博客不要怕内容不够丰富或者说深度不够怕被别人看了之后嘲笑，毕竟我的身份还只是一位学生，技术不强但至少还有充足的时间去学习。</p>
+<p>以前的我总是很小心翼翼，过于内向，连舍友回寝室从背后走过我都要担心他们是否会偷看我的电脑屏幕，我总是有所防范，防止大家看到我的生活，看到我的开源代码，看到我的博客，因为自己深知其质量不高，怕自己被嘲笑，怕在朋友面前抬不起头。但现在发现其实很多事情没有必要如此。怎么思绪又串不起来了呢，还是文章写少了呀</p>
+<p>还有哦，最近做了很多 CTF 的练习题，也参加了线上比赛，现在积累了一些 WriteUp 。把博客弄好也好让自己的 WriteUp 有一个初见天日的机会嘛</p>
 
     </div>
     
@@ -216,17 +205,11 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2019/10051.html" class="pre-post btn btn-default" title="在下又回来啦">
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            在下又回来啦</span>
-    </a>
     
-    
-    <a href="/2019/5290.html" class="next-post btn btn-default" title="Flutter Dio 网络问题一记">
+    <a href="/2019/720.html" class="next-post btn btn-default" title="一个图片迁移工具">
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Flutter Dio 网络问题一记</span><i class="fa fa-angle-right fa-fw"></i>
+            一个图片迁移工具</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +228,7 @@
             Table of Contents
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一个图片迁移工具"><span class="toc-text">一个图片迁移工具</span></a></li></ol>
+        <p>暂无目录</p>
         
     </div>
 </aside>
