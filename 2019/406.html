@@ -1,13 +1,193 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Flutter 问题一记"><meta name="keywords" content="小问题,Flutter,Android"><meta name="author" content="Guu Zeng,rfsx0829@163.com"><meta name="copyright" content="Guu Zeng"><title>Flutter 问题一记 | Guu's Blog</title><link rel="shortcut icon" href="/favicon.png"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  }
-} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flutter-环境配置的小问题"><span class="toc-number">1.</span> <span class="toc-text">Flutter 环境配置的小问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-Flutter-并添加-bin-到-PATH"><span class="toc-number">1.1.</span> <span class="toc-text">下载 Flutter 并添加 bin 到 PATH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-Android-SDK"><span class="toc-number">1.2.</span> <span class="toc-text">配置 Android SDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-number">1.2.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flutter-doctor"><span class="toc-number">1.2.2.</span> <span class="toc-text">Flutter doctor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-版本冲突"><span class="toc-number">1.2.3.</span> <span class="toc-text">Java 版本冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-解决方案"><span class="toc-number">1.2.4.</span> <span class="toc-text">Java 解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-number">1.2.5.</span> <span class="toc-text">环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手机"><span class="toc-number">1.3.</span> <span class="toc-text">手机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.gif"></div><div class="author-info__name text-center">Guu Zeng</div><div class="author-info__description text-center">↑ 只会写 HelloWorld</div><div class="follow-button"><a href="https://github.com/rfsx0829">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">18</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">41</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">23</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links</div><a class="author-info-links__name text-center" href="https://bugzeng.com">bugzeng</a><a class="author-info-links__name text-center" href="https://yhyddr.github.io">abser</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/top.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Guu's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a><a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/about">关于</a></span></div><div id="post-info"><div id="post-title">Flutter 问题一记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-06</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Flutter/">Flutter</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">720</span><span class="post-meta__separator">|</span><span>阅读时长: 2 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Flutter-环境配置的小问题"><a href="#Flutter-环境配置的小问题" class="headerlink" title="Flutter 环境配置的小问题"></a>Flutter 环境配置的小问题</h1><p>因为之前重置过 Mac 一次，导致我的 Flutter 开发环境没有了，又得重新配置环境，而这个过程，真的是让我很头大，我觉得这甚至可以写进博客，这里可以稍微记录下大体的思路</p>
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Guu&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://blog.bugzeng.com">
+    <!--SEO-->
+
+<meta name="keywords" content="小问题,Flutter,Android">
+
+
+<meta name="description" content="Flutter 环境配置的小问题因为之前重置过 Mac 一次，导致我的 Flutter 开发环境没有了，又得重新配置环境，而这个过程，真的是让我很头大，我觉得这甚至可以写进博客，这里可以稍微记录...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Flutter 问题一记 |
+    
+    Guu&#39;s Blog
+</title>
+
+<link rel="alternate" href="/atom.xml" title="Guu&#39;s Blog" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.jpg">
+
+    
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header" style="background-image:url(
+    /./img/top.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="Guu Zeng">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                你发现了一位孤独患者
+            </h2>
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://blog.bugzeng.com">
+                        Guu&#39;s Blog</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                Home</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/Literature/"><i class="fa "></i>
+                                吃了没文化的亏</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Flutter 问题一记">
+            
+            Flutter 问题一记
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/Flutter/">Flutter</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/Android/">Android</a> <a class="tag-link" href="/tags/Flutter/">Flutter</a> <a class="tag-link" href="/tags/小问题/">小问题</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/04/06</span>
+    </span>
+    
+    <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span>
+    
+    
+</div>
+        
+        
+        <p class="fa fa-exclamation-triangle warning">
+            本文于<strong>
+                181</strong>
+            天之前发表，文中内容可能已经过时。
+        </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Flutter-环境配置的小问题"><a href="#Flutter-环境配置的小问题" class="headerlink" title="Flutter 环境配置的小问题"></a>Flutter 环境配置的小问题</h1><p>因为之前重置过 Mac 一次，导致我的 Flutter 开发环境没有了，又得重新配置环境，而这个过程，真的是让我很头大，我觉得这甚至可以写进博客，这里可以稍微记录下大体的思路</p>
 <h2 id="下载-Flutter-并添加-bin-到-PATH"><a href="#下载-Flutter-并添加-bin-到-PATH" class="headerlink" title="下载 Flutter 并添加 bin 到 PATH"></a>下载 Flutter 并添加 bin 到 PATH</h2><p>这一步倒是没什么问题，轻车熟路的，一下子就搞定了</p>
 <h2 id="配置-Android-SDK"><a href="#配置-Android-SDK" class="headerlink" title="配置 Android SDK"></a>配置 Android SDK</h2><p>这是最烦的，在这里耗费了不知道多少时间和好心情</p>
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>第一个问题，下载，本来没什么难度，但是。。。</p>
@@ -35,17 +215,107 @@
 <p>然后几分钟后，手机疯狂死机重启。。。</p>
 <p>然后就重装了 Pixel Experience CAF</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>深夜了，环境终于全部搞完，我的三天假期就只剩下两天来做开发，一天都被配这个环境给浪费掉了，从心说一句，垃圾 Java ！自己都不向下兼容，你开发**呢</p>
-</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:rfsx0829@163.com">Guu Zeng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://rfsx.bugzeng.com/2019/406.html">http://rfsx.bugzeng.com/2019/406.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://rfsx.bugzeng.com">Guu's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/小问题/">小问题</a><a class="post-meta__tags" href="/tags/Flutter/">Flutter</a><a class="post-meta__tags" href="/tags/Android/">Android</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/409.html"><i class="fa fa-chevron-left">  </i><span>C语言实现简单Shell</span></a></div><div class="next-post pull-right"><a href="/2019/3311.html"><span>初探 Kubernetes（二）</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
-  clientID: 'b461fe440fe09abd038f',
-  clientSecret: 'ce376c31953bb9faa0febf2771e673baf191f2a3',
-  repo: 'rfsx0829.github.io',
-  owner: 'rfsx0829',
-  admin: 'rfsx0829',
-  id: md5(decodeURI(location.pathname)),
-  language: 'zh-CN'
-})
-gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/top.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By Guu Zeng</div><div class="footer_custom_text">Hi, welcome to my blog !</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-  $('#nav').addClass('is-mobile')
-  $('footer').addClass('is-mobile')
-}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
- <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2019/409.html" class="pre-post btn btn-default" title="C语言实现简单Shell">
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            C语言实现简单Shell</span>
+    </a>
+    
+    
+    <a href="/2019/3311.html" class="next-post btn btn-default" title="初探 Kubernetes（二）">
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            初探 Kubernetes（二）</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            Table of Contents
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flutter-环境配置的小问题"><span class="toc-text">Flutter 环境配置的小问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-Flutter-并添加-bin-到-PATH"><span class="toc-text">下载 Flutter 并添加 bin 到 PATH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-Android-SDK"><span class="toc-text">配置 Android SDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flutter-doctor"><span class="toc-text">Flutter doctor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-版本冲突"><span class="toc-text">Java 版本冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-解决方案"><span class="toc-text">Java 解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手机"><span class="toc-text">手机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    Total:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    Visitors:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/app.js?rev=@@hash"></script>
+</body>
+</html>
