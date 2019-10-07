@@ -181,7 +181,7 @@
         
         <p class="fa fa-exclamation-triangle warning">
             本文于<strong>
-                189</strong>
+                190</strong>
             天之前发表，文中内容可能已经过时。
         </p>
         
@@ -235,7 +235,7 @@
 <p>ps: 如果读者是 Linux 环境当我没说</p>
 <p>ps: 如果有读者看不懂这条命令，没关系不要怕，你不是不懂 Golang ，你只是不懂 C 而已</p>
 <h3 id="构建-Docker-镜像"><a href="#构建-Docker-镜像" class="headerlink" title="构建 Docker 镜像"></a>构建 Docker 镜像</h3><p>要构建 Docker 镜像，我们先写一个 dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> ./main /main</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"/main"</span> ]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="keyword">ADD</span> ./main /main</span><br><span class="line"><span class="keyword">CMD</span> [ "/main" ]</span><br></pre></td></tr></table></figure>
 <p>ps: scratch 是一个空的 Docker 镜像，即不使用基础镜像的意思</p>
 <p>写好 Dockerfile 后，在执行命令构建镜像之前，要确保minikube已经启动，并且执行一句神奇的命令先</p>
 <blockquote>
