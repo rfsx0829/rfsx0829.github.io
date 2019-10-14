@@ -19,12 +19,15 @@
     <link rel="dns-prefetch" href="http://blog.bugzeng.com">
     <!--SEO-->
 
-<meta name="keywords" content="C,Summary,Programming">
+<meta name="keywords" content="CTF,WriteUp,Crypto">
 
 
-<meta name="description" content="博客开了这么久，都没写什么技术性的文章，恰好最近在看C语言相关的东西，学会一些关于指针声明的小技巧，记录一下。言传我也不太说话，直接意会吧
-变量指针
-int *p = NULL;&nbsp;&n...">
+<meta name="description" content="分析拿到题目，就是一个简单的 RSA 题目，给出了 n 和密文 c
+
+因为给出了 n 所以直接考虑能不能硬分解 n
+把 n 放到大整数在线分解网站上试试看，确实可以分解，得到 p 和 q
+
+既然...">
 
 
 <meta name="robots" content="all">
@@ -35,7 +38,7 @@ int *p = NULL;&nbsp;&n...">
 
 <title>
     
-    C语言指针声明小结 |
+    [Crypto] RoarCTF RSA WriteUp |
     
     Guu&#39;s Blog
 </title>
@@ -141,16 +144,16 @@ int *p = NULL;&nbsp;&n...">
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="C语言指针声明小结">
+        <h1 id="[Crypto] RoarCTF RSA WriteUp">
             
-            C语言指针声明小结
+            [Crypto] RoarCTF RSA WriteUp
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/C/">C</a>
+        <a class="category-link" href="/categories/CTF/">CTF</a>
     </span>
     
     
@@ -158,7 +161,7 @@ int *p = NULL;&nbsp;&n...">
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-link" href="/tags/C/">C</a> <a class="tag-link" href="/tags/Programming/">Programming</a> <a class="tag-link" href="/tags/Summary/">Summary</a>
+            <a class="tag-link" href="/tags/CTF/">CTF</a> <a class="tag-link" href="/tags/Crypto/">Crypto</a> <a class="tag-link" href="/tags/WriteUp/">WriteUp</a>
             
         </span>
     </span>
@@ -168,7 +171,7 @@ int *p = NULL;&nbsp;&n...">
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2018/07/03</span>
+            2019/10/14</span>
     </span>
     
     <span class="fa-wrap">
@@ -180,34 +183,19 @@ int *p = NULL;&nbsp;&n...">
 </div>
         
         
-        <p class="fa fa-exclamation-triangle warning">
-            本文于<strong>
-                468</strong>
-            天之前发表，文中内容可能已经过时。
-        </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <p>博客开了这么久，都没写什么技术性的文章，恰好最近在看C语言相关的东西，学会一些关于指针声明的小技巧，记录一下。<br>言传我也不太说话，直接意会吧</p>
-<h4 id="变量指针"><a href="#变量指针" class="headerlink" title="变量指针"></a>变量指针</h4><blockquote>
-<p><strong>int *p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形变量</em> 的指针</strong><br><strong>int **p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形指针变量</em> 的指针</strong></p>
-</blockquote>
-<h4 id="常量指针，常指针"><a href="#常量指针，常指针" class="headerlink" title="常量指针，常指针"></a>常量指针，常指针</h4><blockquote>
-<p><strong>const int *p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形常量</em> 的指针</strong><br><strong>int *const p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形</em> 的常指针</strong><br><strong>const int *const p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形常量</em> 的常指针</strong></p>
-</blockquote>
-<h4 id="数组指针，指针数组"><a href="#数组指针，指针数组" class="headerlink" title="数组指针，指针数组"></a>数组指针，指针数组</h4><blockquote>
-<p><strong>int *p[4] = {NULL};&nbsp;&nbsp;//&nbsp;大小为4的数组，每个元素都是指向整形变量的指针</strong><br><strong>int (*p)[4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>一个大小为4的整形数组</em> 的指针，自增时每次加4 * sizeof(int)</strong><br><strong>int *(*p)[4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>一个大小为4的指针数组</em> ，该数组的每一个元素都是指向整形变量的指针</strong><br><strong>int *p[3][4] = {NULL};&nbsp;&nbsp;//&nbsp;3 * 4的二维数组，每一个元素都是指向整形变量的指针</strong><br><strong>int (*p)[3][4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>大小为3 \</em> 4的二维整形数组<em> 的指针，自增时每次加3 \</em> 4 * sizeof(int)</strong><br><strong>int *(*p)[3][4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>大小为3 \</em> 4的二维整形指针数组* 的指针，该数组每一个元素都是指向整形变量的指针</strong><br><strong>int (*(*p)[3])[4] = NULL;&nbsp;&nbsp;//&nbsp;指向一个指针，这个指针又指向一个大小为3的指针数组，数组的每一个元素指向一个大小为4的整形数组</strong><br><strong>int *(*(*p)[3])[4] = NULL;&nbsp;&nbsp;//&nbsp;指向一个指针，这个指针又指向一个大小为3的指针数组，数组的每一个元素指向一个大小为4的整形指针数组</strong></p>
-</blockquote>
-<h4 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h4><blockquote>
-<p><strong>int *p(int) = NULL;&nbsp;&nbsp;//&nbsp;有一个整形形参，返回值为整形指针的函数</strong><br><strong>int (*p)(int) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形形参，返回值为整形变量的函数</em> 的函数指针</strong><br><strong>int *(*p)(int) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形形参，返回值为整形指针的函数</em> 的函数指针</strong><br><strong>int *(*p)(int*) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形指针参数，返回值是整形指针的函数</em> 的函数指针</strong><br><strong>int *(*p)(int, int*) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形参数，一个整形指针参数，返回值是整形指针的函数</em> 的函数指针</strong></p>
-</blockquote>
-<h4 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h4><blockquote>
-<p><strong>int *(*(*(*p)(int*))[3])(int*[ ], int*) = NULL;&nbsp;&nbsp;//&nbsp;P是一个函数指针，指向一个有一个整形指针参数的函数，这个函数的返回值是指向数组的指针，数组的每一个元素也是一个函数指针，指向一个 返回值为整形指针，参数为一个整形指针数组和一个整形指针 的函数</strong></p>
-</blockquote>
-<p><br></p>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>稍微有点乱，但是，不难发现其中的规律。</p>
-<p><strong>*p表示一个指针，但是 * 符号的优先级没有( )和[ ]高。所以 int *p[ ] 和 int (*p)[ ] 就有一些区别了，一个是 指针数组，一个是数组指针</strong><br><br><br><strong>int *p[ ];&nbsp;&nbsp;[ ]优先级比*高，所以p是数组，那么把p[]用手遮住，剩下的就是数组的类型了，也就是int*，整形指针类型。</strong><br><br><br><strong>int (*p)[ ];&nbsp;&nbsp;*p被括号括起来了，优先级最高，所以p是指针，用手把*p遮住，剩下的就是指针所指向的类型了，也就是int [ ]，整形数组类型。</strong><br><br><br>那么，同样的方法，可以分析一下其他的声明。如<strong>int *p(int);和int (*p)(int);</strong><br><br><br><strong>int *p(int); &nbsp;乍一看像一个指针，但是这是一个函数声明，( )优先级比*高，所以p是一个函数，所以把p(int)遮住，剩下int*，所以p是一个参数为整形，返回值为整形指针的函数。</strong><br><br><br><strong>int (*p)(int); &nbsp;这个就是一个指针声明了，p是指针，遮住(*p)，剩下int &nbsp; (int)，所以p指向 &nbsp; 一个参数为整形，返回值为整形&nbsp; 的函数。</strong><br><br><br><br><del>方法就是这么个方法，其他分析自己多思考吧。</del></p>
+        <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>拿到题目，就是一个简单的 RSA 题目，给出了 n 和密文 c</p>
+<p><img src="../pics/20191014001.png" alt="topic"></p>
+<p>因为给出了 n 所以直接考虑能不能硬分解 n</p>
+<p>把 n 放到<a href="http://www.factordb.com/index.php" target="_blank" rel="noopener">大整数在线分解网站</a>上试试看，确实可以分解，得到 p 和 q</p>
+<p><img src="../pics/20191014002.png" alt="factor"></p>
+<p>既然都分解出 p 和 q 了，那么算出明文就没有难度了</p>
+<p>顺便注意：大整数的高次幂可以用<strong>模重复平方算法</strong>来快速计算，自己实现也比较简单，但其实用 Python 自带的 pow 函数就够了</p>
+<p>ps：<strong>如果 RSA 没有给出公钥 e 的话，默认选择 e = 0x10001 即 65537</strong></p>
+<p>ps：如果不知道什么是 RSA 加密算法或者对其原理不够了解，可以参见<a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener">阮一峰的网络日志</a></p>
+<h2 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey.RSA <span class="keyword">import</span> inverse, long_to_bytes</span><br><span class="line"></span><br><span class="line">c = <span class="number">75186169332770398011618387278278132278790899252552138882799075432380607926731546030253687400295924217369315868839672386616943227315064045460865365296683033483186291570240079759200380250862319608787524113935879604728967164231477966741805601564635364322718438051545168770427777047667842857584346659655292503627681225184738425341914431617445650748762586933275572200060984083928949491872172407901109108320296584642767891651443970128071209300594102046815811229697489154488296004024544579726109722995921635677648742873800015194793794148142345457719541079982444120634269256199324030425798299206933898605904024426172410823</span></span><br><span class="line">n = <span class="number">117930806043507374325982291823027285148807239117987369609583515353889814856088099671454394340816761242974462268435911765045576377767711593100416932019831889059333166946263184861287975722954992219766493089630810876984781113645362450398009234556085330943125568377741065242183073882558834603430862598066786475299918395341014877416901185392905676043795425126968745185649565106322336954427505104906770493155723995382318346714944184577894150229037758434597242564815299174950147754426950251419204917376517360505024549691723683358170823416757973059354784142601436519500811159036795034676360028928301979780528294114933347127</span></span><br><span class="line"></span><br><span class="line">p = <span class="number">842868045681390934539739959201847552284980179958879667933078453950968566151662147267006293571765463137270594151138695778986165111380428806545593588078365331313084230014618714412959584843421586674162688321942889369912392031882620994944241987153078156389470370195514285850736541078623854327959382156753458569</span></span><br><span class="line">q = <span class="number">139916095583110895133596833227506693679306709873174024876891023355860781981175916446323044732913066880786918629089023499311703408489151181886568535621008644997971982182426706592551291084007983387911006261442519635405457077292515085160744169867410973960652081452455371451222265819051559818441257438021073941183</span></span><br><span class="line"></span><br><span class="line">phi_n = (p<span class="number">-1</span>)*(q<span class="number">-1</span>) // 具体可参见 欧拉函数</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">d = inverse(e, phi_n) // 求 e 模 phi_n 的逆元</span><br><span class="line"></span><br><span class="line">m = pow(c, d, n)</span><br><span class="line">data = long_to_bytes(m) // 长整数转换为字节集</span><br><span class="line"></span><br><span class="line">print(m)</span><br><span class="line">print(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2222445378180646636797706006131586300103136428029746834289358120497533</span></span><br><span class="line"><span class="comment"># b'RoarCTF&#123;wm-l1l11il1l1l11ll11&#125;'</span></span><br></pre></td></tr></table></figure>
 
     </div>
     
@@ -226,17 +214,11 @@ int *p = NULL;&nbsp;&n...">
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2018/24479.html" class="pre-post btn btn-default" title="简单读写进程内存">
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            简单读写进程内存</span>
-    </a>
     
-    
-    <a href="/2018/43234.html" class="next-post btn btn-default" title="基于Hexo+GitHub搭建个人博客教程">
+    <a href="/2019/10071.html" class="next-post btn btn-default" title="[pwn] greeting WriteUp">
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            基于Hexo+GitHub搭建个人博客教程</span><i class="fa fa-angle-right fa-fw"></i>
+            [pwn] greeting WriteUp</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -255,7 +237,7 @@ int *p = NULL;&nbsp;&n...">
             Table of Contents
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量指针"><span class="toc-text">变量指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常量指针，常指针"><span class="toc-text">常量指针，常指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组指针，指针数组"><span class="toc-text">数组指针，指针数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数指针"><span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#混合"><span class="toc-text">混合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exp"><span class="toc-text">exp</span></a></li></ol>
         
     </div>
 </aside>
