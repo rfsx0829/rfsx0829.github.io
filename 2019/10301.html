@@ -19,12 +19,11 @@
     <link rel="dns-prefetch" href="http://blog.bugzeng.com">
     <!--SEO-->
 
-<meta name="keywords" content="C,Summary,Programming">
+<meta name="keywords" content="STM32,单片机">
 
 
-<meta name="description" content="博客开了这么久，都没写什么技术性的文章，恰好最近在看C语言相关的东西，学会一些关于指针声明的小技巧，记录一下。言传我也不太说话，直接意会吧
-变量指针
-int *p = NULL;&nbsp;&n...">
+<meta name="description" content="前言作为一个计算机的学生，似乎倒腾单片机不太算正路，不过是应老同学的要求，那硬着头皮也要上呀，即使没有任何经验。
+朋友让我帮忙做一个 超声波测距警报的小型电子设备，而且要在警报的时候通知周围的其...">
 
 
 <meta name="robots" content="all">
@@ -35,7 +34,7 @@ int *p = NULL;&nbsp;&n...">
 
 <title>
     
-    C语言指针声明小结 |
+    记一次单片机从零到一 |
     
     Guu&#39;s Blog
 </title>
@@ -141,16 +140,16 @@ int *p = NULL;&nbsp;&n...">
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="C语言指针声明小结">
+        <h1 id="记一次单片机从零到一">
             
-            C语言指针声明小结
+            记一次单片机从零到一
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/C/">C</a>
+        <a class="category-link" href="/categories/单片机/">单片机</a>
     </span>
     
     
@@ -158,7 +157,7 @@ int *p = NULL;&nbsp;&n...">
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-link" href="/tags/C/">C</a> <a class="tag-link" href="/tags/Programming/">Programming</a> <a class="tag-link" href="/tags/Summary/">Summary</a>
+            <a class="tag-link" href="/tags/STM32/">STM32</a> <a class="tag-link" href="/tags/单片机/">单片机</a>
             
         </span>
     </span>
@@ -168,7 +167,7 @@ int *p = NULL;&nbsp;&n...">
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2018/07/03</span>
+            2019/10/30</span>
     </span>
     
     <span class="fa-wrap">
@@ -180,34 +179,33 @@ int *p = NULL;&nbsp;&n...">
 </div>
         
         
-        <p class="fa fa-exclamation-triangle warning">
-            本文于<strong>
-                484</strong>
-            天之前发表，文中内容可能已经过时。
-        </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <p>博客开了这么久，都没写什么技术性的文章，恰好最近在看C语言相关的东西，学会一些关于指针声明的小技巧，记录一下。<br>言传我也不太说话，直接意会吧</p>
-<h4 id="变量指针"><a href="#变量指针" class="headerlink" title="变量指针"></a>变量指针</h4><blockquote>
-<p><strong>int *p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形变量</em> 的指针</strong><br><strong>int **p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形指针变量</em> 的指针</strong></p>
-</blockquote>
-<h4 id="常量指针，常指针"><a href="#常量指针，常指针" class="headerlink" title="常量指针，常指针"></a>常量指针，常指针</h4><blockquote>
-<p><strong>const int *p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形常量</em> 的指针</strong><br><strong>int *const p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形</em> 的常指针</strong><br><strong>const int *const p = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>整形常量</em> 的常指针</strong></p>
-</blockquote>
-<h4 id="数组指针，指针数组"><a href="#数组指针，指针数组" class="headerlink" title="数组指针，指针数组"></a>数组指针，指针数组</h4><blockquote>
-<p><strong>int *p[4] = {NULL};&nbsp;&nbsp;//&nbsp;大小为4的数组，每个元素都是指向整形变量的指针</strong><br><strong>int (*p)[4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>一个大小为4的整形数组</em> 的指针，自增时每次加4 * sizeof(int)</strong><br><strong>int *(*p)[4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>一个大小为4的指针数组</em> ，该数组的每一个元素都是指向整形变量的指针</strong><br><strong>int *p[3][4] = {NULL};&nbsp;&nbsp;//&nbsp;3 * 4的二维数组，每一个元素都是指向整形变量的指针</strong><br><strong>int (*p)[3][4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>大小为3 \</em> 4的二维整形数组<em> 的指针，自增时每次加3 \</em> 4 * sizeof(int)</strong><br><strong>int *(*p)[3][4] = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>大小为3 \</em> 4的二维整形指针数组* 的指针，该数组每一个元素都是指向整形变量的指针</strong><br><strong>int (*(*p)[3])[4] = NULL;&nbsp;&nbsp;//&nbsp;指向一个指针，这个指针又指向一个大小为3的指针数组，数组的每一个元素指向一个大小为4的整形数组</strong><br><strong>int *(*(*p)[3])[4] = NULL;&nbsp;&nbsp;//&nbsp;指向一个指针，这个指针又指向一个大小为3的指针数组，数组的每一个元素指向一个大小为4的整形指针数组</strong></p>
-</blockquote>
-<h4 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h4><blockquote>
-<p><strong>int *p(int) = NULL;&nbsp;&nbsp;//&nbsp;有一个整形形参，返回值为整形指针的函数</strong><br><strong>int (*p)(int) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形形参，返回值为整形变量的函数</em> 的函数指针</strong><br><strong>int *(*p)(int) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形形参，返回值为整形指针的函数</em> 的函数指针</strong><br><strong>int *(*p)(int*) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形指针参数，返回值是整形指针的函数</em> 的函数指针</strong><br><strong>int *(*p)(int, int*) = NULL;&nbsp;&nbsp;//&nbsp;指向 <em>有一个整形参数，一个整形指针参数，返回值是整形指针的函数</em> 的函数指针</strong></p>
-</blockquote>
-<h4 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h4><blockquote>
-<p><strong>int *(*(*(*p)(int*))[3])(int*[ ], int*) = NULL;&nbsp;&nbsp;//&nbsp;P是一个函数指针，指向一个有一个整形指针参数的函数，这个函数的返回值是指向数组的指针，数组的每一个元素也是一个函数指针，指向一个 返回值为整形指针，参数为一个整形指针数组和一个整形指针 的函数</strong></p>
-</blockquote>
-<p><br></p>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>稍微有点乱，但是，不难发现其中的规律。</p>
-<p><strong>*p表示一个指针，但是 * 符号的优先级没有( )和[ ]高。所以 int *p[ ] 和 int (*p)[ ] 就有一些区别了，一个是 指针数组，一个是数组指针</strong><br><br><br><strong>int *p[ ];&nbsp;&nbsp;[ ]优先级比*高，所以p是数组，那么把p[]用手遮住，剩下的就是数组的类型了，也就是int*，整形指针类型。</strong><br><br><br><strong>int (*p)[ ];&nbsp;&nbsp;*p被括号括起来了，优先级最高，所以p是指针，用手把*p遮住，剩下的就是指针所指向的类型了，也就是int [ ]，整形数组类型。</strong><br><br><br>那么，同样的方法，可以分析一下其他的声明。如<strong>int *p(int);和int (*p)(int);</strong><br><br><br><strong>int *p(int); &nbsp;乍一看像一个指针，但是这是一个函数声明，( )优先级比*高，所以p是一个函数，所以把p(int)遮住，剩下int*，所以p是一个参数为整形，返回值为整形指针的函数。</strong><br><br><br><strong>int (*p)(int); &nbsp;这个就是一个指针声明了，p是指针，遮住(*p)，剩下int &nbsp; (int)，所以p指向 &nbsp; 一个参数为整形，返回值为整形&nbsp; 的函数。</strong><br><br><br><br><del>方法就是这么个方法，其他分析自己多思考吧。</del></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作为一个计算机的学生，似乎倒腾单片机不太算正路，不过是应老同学的要求，那硬着头皮也要上呀，即使没有任何经验。</p>
+<p>朋友让我帮忙做一个 超声波测距警报的小型电子设备，而且要在警报的时候通知周围的其他相同设备，一起报警</p>
+<p>于是对单片机没有任何经验的我，开始了一条神奇的摸索之路</p>
+<p>Ps：其实自己有稍微捣腾过树莓派，但是树莓派和单片机的差距还是有点大的，所以也可以算作是没有经验吧</p>
+<h2 id="资料收集"><a href="#资料收集" class="headerlink" title="资料收集"></a>资料收集</h2><p>因为有捣腾树莓派的微弱经验，知道要做出这些功能肯定需要很多传感器，于是去买了有</p>
+<ul>
+<li>超声波测距模块</li>
+<li>蓝牙模块</li>
+<li>有源蜂鸣器</li>
+<li>STM32F103C8T6 最小开发版</li>
+<li>USB to TTL 模块</li>
+</ul>
+<p>不知道为什么选择了 STM32 而不是大家都会的 51 单片机，可能是因为不想太容易完成吧（以至于后面有问题问同学的时候大家都只会 51 于是我自己的问题还得自己解决），不过现在来看的话，STM32 还是非常不错的，而且很便宜</p>
+<p>下载了很多资料，各个模块的开发手册，单片机的开发手册，CSDN 上找到了各种教程，于是准备开始动工</p>
+<h2 id="初步动手"><a href="#初步动手" class="headerlink" title="初步动手"></a>初步动手</h2><p>刚开始我还不知道 Keil 这个软件的，也不知道什么叫所谓的 “下载”，“串口” 之类的，也还没有买 STM32 单片机，因为我以为有自己的树莓派就够了，于是拿着一堆传感器往面包版上一接就开始敲代码，因为树莓派有成熟的 GPIO 库和图形化的操作系统，于是一下子就写出了基本的代码，实现了基本的测距和报警功能。</p>
+<p>这样虽然简单，但是我要怎么才能做出两个设备来呢，还要让其互相通信，这似乎是个问题。于是我选择了 STM32 单片机。</p>
+<p>单片机到手之后，我纯粹是懵逼状态，哦，就两个板子，两根线，怎么用啊？下载的什么所谓最小系统原理图，什么各种电路图看得头大，并且毫无头绪。</p>
+<p>又是各种查查查，知道可以通过 J-Link 方式烧录程序，但是这个 J-Link 似乎又要什么硬件设备来连接，看得我又是头大，到最后终于发现似乎可以通过 USB 来烧录，不过也需要购买一个连接设备，就是那个 USB to TTL 的东西。（到后来才知道这东西，不仅可以烧录程序，还可以调试蓝牙模块，真的是非常酷）</p>
+<p><img src="../pics/20191030001.png" alt="就是这个东西"></p>
+<p>又从同学口中了解到可以用 Keil 这个软件来写程序，于是正途开始了</p>
+<h2 id="正式路途"><a href="#正式路途" class="headerlink" title="正式路途"></a>正式路途</h2><p>下载好 Keil 之后随意编译了一个 每 0.5 秒开关一次小灯的 example （编译的时候需要选择设备诶），然后烧录进单片机，哇，果然真的可以诶，不过刚开始烧录真的觉得好麻烦诶</p>
+<ol>
+<li></li>
+</ol>
 
     </div>
     
@@ -226,17 +224,11 @@ int *p = NULL;&nbsp;&n...">
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2018/24479.html" class="pre-post btn btn-default" title="简单读写进程内存">
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            简单读写进程内存</span>
-    </a>
     
-    
-    <a href="/2018/43234.html" class="next-post btn btn-default" title="基于Hexo+GitHub搭建个人博客教程">
+    <a href="/2019/10261.html" class="next-post btn btn-default" title="[BUUCTF] pwn 刷题之旅">
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            基于Hexo+GitHub搭建个人博客教程</span><i class="fa fa-angle-right fa-fw"></i>
+            [BUUCTF] pwn 刷题之旅</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -255,7 +247,7 @@ int *p = NULL;&nbsp;&n...">
             Table of Contents
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量指针"><span class="toc-text">变量指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常量指针，常指针"><span class="toc-text">常量指针，常指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组指针，指针数组"><span class="toc-text">数组指针，指针数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数指针"><span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#混合"><span class="toc-text">混合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料收集"><span class="toc-text">资料收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初步动手"><span class="toc-text">初步动手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正式路途"><span class="toc-text">正式路途</span></a></li></ol>
         
     </div>
 </aside>
