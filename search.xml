@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>准备闭关</title>
+      <link href="/2019/11271.html"/>
+      <url>/2019/11271.html</url>
+      
+        <content type="html"><![CDATA[<p>最近考了很多试，很多课也结掉了，剩下几门都是没有挑战性的科目</p><p>听师傅们讲年前也没什么大型线上 CTF 比赛了（菜鸡还是进不了线下，妈的）</p><p>那就准备闭关了吧，多深入研究研究</p><p>目前是在看 Linux 内核的源码，从 0.01 版本开始看的，还可以，基本没什么难度</p><p>还有打算再多深入学学数据结构，只是简单的链表啊二叉树这些实在没意思，打算自己多写写红黑树 B+树 二叉平衡 各种奇奇怪怪的东西，尽量玩得熟练才行</p><p>后期还打算在看懂 Linux 内核源码的基础上自己尝试写一个简单的内核</p><p>多说无益，实干兴邦</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 杂谈 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[WriteUp] HECTF WriteUp</title>
       <link href="/2019/11041.html"/>
       <url>/2019/11041.html</url>
@@ -730,11 +755,11 @@
       
         <tags>
             
-            <tag> Blog </tag>
-            
             <tag> Hexo </tag>
             
             <tag> GitHub </tag>
+            
+            <tag> Blog </tag>
             
             <tag> Nodejs </tag>
             
