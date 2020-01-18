@@ -216,8 +216,21 @@
 
         </div>
         <footer id="footer" class="footer">
+    <div class="jinrishici-container">
+        <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        <span id="poem-sentence">正在加载今日诗词....</span><span id="poem-info"></span>
+        <script type="text/javascript">
+        jinrishici.load(function(result) {
+            // console.log(result)
+            var sentence = document.querySelector("#poem-sentence")
+            var info = document.querySelector("#poem-info")
+            sentence.innerHTML = result.data.content
+            info.innerHTML = " -- " + result.data.origin.author + " 《" + result.data.origin.title + "》"
+        })
+        </script>
+    </div>
     <div class="copyright">
-        <span>© 0xbz7sb7 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© 2020 0xbz7sb7 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | <a href="https://www.jinrishici.com/" target="_blank">今日诗词</a></span>
     </div>
 </footer>
 
